@@ -22,7 +22,7 @@ unicheck - Command line client of Uninets::Check.
 Uninets::Check is a mini framework to collect data. Main goal was modularity and pluggability.
 unicheck is it's CLI.
 
-Usage: unicheck [<options>] [<module_name>] [<module_params>]
+Usage: unicheck [options] [module_name] [module_params]
 
 =head1 OPTIONS
 
@@ -35,9 +35,11 @@ List all loaded modules
 =head2 --info
 
 Show info of all modules
+
 	unicheck --info
 
 Show info of HTTP module
+
 	unicheck --info HTTP
 
 =head2 --newline
