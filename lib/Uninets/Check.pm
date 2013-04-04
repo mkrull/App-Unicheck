@@ -1,6 +1,6 @@
 package Uninets::Check;
 
-use 5.006;
+use 5.10.1;
 use strict;
 use warnings FATAL => 'all';
 use Module::Pluggable sub_name => '_plugins', require => 1, search_path => ['Uninets::Check::Modules'];

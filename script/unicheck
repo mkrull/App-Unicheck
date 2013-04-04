@@ -63,7 +63,7 @@ my $option_handler = sub {
 GetOptions(
 	'info:s' => $option_handler,
 	'newline' => $option_handler,
-	'' => \$plugins_flag,
+	'modules' => \$plugins_flag,
 );
 
 unless (keys %{$check->modules}) {
