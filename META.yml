@@ -19,11 +19,11 @@ no_index:
 provides:
   Uninets::Check:
     file: lib/Uninets/Check.pm
-    version: 0.01
+    version: 0.02
 requires:
   Moo: 0
   perl: v5.10.1
 resources:
   license: http://www.perlfoundation.org/artistic_license_2_0
   repository: https://github.com/uninets/Uninets-Check
-version: 0.01
+version: 0.02

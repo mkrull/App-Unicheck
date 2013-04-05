@@ -1,6 +1,7 @@
 Build.PL
 Changes
 lib/Uninets/Check.pm
+script/unicheck
 MANIFEST			This list of files
 README
 t/00-load.t
