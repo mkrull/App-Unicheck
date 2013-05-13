@@ -76,7 +76,7 @@ if (defined $info) {
 }
 
 if ($plugins_flag) {
-	print "$_\n" for keys $check->modules;
+	print "$_\n" for keys %{$check->modules};
 	exit 0;
 }
 
