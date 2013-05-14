@@ -28,26 +28,6 @@ Hash reference containing all loaded modules with module names as keys and modul
     say for keys $unicheck->modules;
 
 # METHODS
-=cut
-
-sub BUILD {
-    my $self = shift;
-
-    my $modules = {};
-
-    for my $check ($self->_plugins){
-        (my $name = $check) =~ s/Uninets::Check::Modules::(.*)/$1/;
-        $modules->{$name} = $check->new;
-    }
-
-    $self->modules($modules);
-}
-
-sub \_loaded\_modules {
-    my $self = shift;
-
-    wantarray ? keys %{$self->modules} : [keys %{$self->modules}];
-}
 
 ## run
 
