@@ -12,20 +12,22 @@ Uninets::Check - Mini data collection framework!
 
 =head1 VERSION
 
-Version 0.01
+Version 0.04
 
 =cut
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 =head1 SYNOPSIS
 
-Uninets::Check is a mini framework to collect data. Main goal was modularity and pluggability.
+Uninets::Check is a mini framework to collect data.
+The main purpose was to provide a pluggable, easy to use systems data source with consistent interface that is independent from specific systems monitoring solutions but can still be used by them.
+
 On object construction all modules inside the Uninets::Check::Modules namespace are loaded and new() is called on them.
 
     use Uninets::Check;
 
-	# create object and load modules
+    # create object and load modules
     my $unicheck = Uninets::Check->new;
 
 =cut
@@ -37,11 +39,12 @@ On object construction all modules inside the Uninets::Check::Modules namespace 
 Hash reference containing all loaded modules with module names as keys and module instances as values.
 
     # print out loaded modules
-	say for keys $unicheck->modules;
+    say for keys $unicheck->modules;
 
 =cut
+
 has modules => (
-	is => 'rw'
+    is => 'rw'
 );
 
 
@@ -49,81 +52,82 @@ has modules => (
 =cut
 
 sub BUILD {
-	my $self = shift;
+    my $self = shift;
 
-	my $modules = {};
+    my $modules = {};
 
-	for my $check ($self->_plugins){
-		(my $name = $check) =~ s/Uninets::Check::Modules::(.*)/$1/;
-		$modules->{$name} = $check->new;
-	}
+    for my $check ($self->_plugins){
+        (my $name = $check) =~ s/Uninets::Check::Modules::(.*)/$1/;
+        $modules->{$name} = $check->new;
+    }
 
-	$self->modules($modules);
+    $self->modules($modules);
 }
 
 sub _loaded_modules {
-	my $self = shift;
+    my $self = shift;
 
-	wantarray ? keys %{$self->modules} : [keys %{$self->modules}];
+    wantarray ? keys %{$self->modules} : [keys %{$self->modules}];
 }
 
 =head2 run
 
-Runs a check modules run() method with parameters.
+Runs a check module's run() method with parameters.
 
-	$unicheck->run($module, @params);
+    $unicheck->run($module, @params);
 
 =cut
 
 sub run {
-	my ($self, $module, @params) = @_;
+    my ($self, $module, @params) = @_;
 
-	$self->modules->{$module}->run(@params) if defined $module && defined $self->modules->{$module};
+    $self->modules->{$module}->run(@params) if defined $module && defined $self->modules->{$module};
 }
 
 =head2 info
 
 Show information on loaded modules. Calls the help() method of the modules and formats the output.
 
-	# show help for all modules
-	say $unicheck->info;
+    # show info of all modules
+    say $unicheck->info;
 
-	# show info for specific module
-	say $unicheck->info($module);
+    # show info of specific module
+    say $unicheck->info($module);
 
 =cut
 
 sub info {
-	my ($self, $module) = @_;
+    my ($self, $module) = @_;
 
-	# if called with out specific module get info of all modules
-	my @modules = $self->_loaded_modules;
-	if (defined $module && $module) {
-		@modules = ($module);
-	}
-	my $info = '';
+    # if called with out specific module get info of all modules
+    my @modules = $self->_loaded_modules;
+    if (defined $module && $module) {
+        @modules = ($module);
+    }
+    my $info = '';
 
-	for my $module (@modules){
-		$info .= "$module (" . $self->modules->{$module}->help->{description} . "):\n";
+    for my $module (@modules){
+        $info .= "$module (" . $self->modules->{$module}->help->{description} . "):\n";
 
-		$info .= (' ' x 2) . "Available actions:\n";
-		my %actions = %{$self->modules->{$module}->help->{actions}};
-		while (my ($action, $data) = each %actions){
-			$info .= (' ' x 4) . "$action ($data->{description}):\n";
-			$info .= (' ' x 6) . "Formats:\n";
-			my %formats = %{$data->{formats}};
-			while (my ($k, $v) = each %formats){
-				$info .= (' ' x 8) . "$k: $v\n";
-			}
-			$info .= (' ' x 6) . "Parameters:\n";
-			my %params = %{$data->{params}};
-			while (my ($k, $v) = each %params){
-				$info .= (' ' x 8) . "$k: $v\n";
-			}
-		}
-	}
+        # TODO clean up ugly mess
+        $info .= (' ' x 2) . "Available actions:\n";
+        my %actions = %{$self->modules->{$module}->help->{actions}};
+        while (my ($action, $data) = each %actions){
+            $info .= (' ' x 4) . "$action ($data->{description}):\n";
+            $info .= (' ' x 6) . "Formats:\n";
+            my %formats = %{$data->{formats}};
+            while (my ($k, $v) = each %formats){
+                $info .= (' ' x 8) . "$k: $v\n";
+            }
+            $info .= (' ' x 6) . "Parameters:\n";
+            my %params = %{$data->{params}};
+            while (my ($k, $v) = each %params){
+                $info .= (' ' x 8) . "$k: $v\n";
+            }
+        }
+    }
 
-	$info;
+    $info;
 }
 
 =head1 AUTHOR
@@ -136,7 +140,7 @@ Please report any bugs or feature requests to C<bug-uninets-check at rt.cpan.org
 the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Uninets-Check>.  I will be notified, and then you'll
 automatically be notified of progress on your bug as I make changes.
 
-
+Alternatively report bugs or feature requests at L<https://github.com/uninets/Uninets-Check/issues>.
 
 
 =head1 SUPPORT
@@ -165,6 +169,10 @@ L<http://cpanratings.perl.org/d/Uninets-Check>
 =item * Search CPAN
 
 L<http://search.cpan.org/dist/Uninets-Check/>
+
+=item * Github
+
+L<https://github.com/uninets/Uninets-Check/>
 
 =back
 

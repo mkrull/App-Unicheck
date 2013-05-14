@@ -1,35 +1,69 @@
 # NAME
 
-unicheck - Command line client of Uninets::Check.
+Uninets::Check - Mini data collection framework!
+
+# VERSION
+
+Version 0.04
 
 # SYNOPSIS
 
-Uninets::Check is a mini framework to collect data. Main goal was modularity and pluggability.
-unicheck is it's CLI.
+Uninets::Check is a mini framework to collect data.
+The main purpose was to provide a pluggable, easy to use systems data source with consistent interface that is independent from specific systems monitoring solutions but can still be used by them.
 
-Usage: unicheck \[options\] \[module\_name\] \[module\_params\]
+On object construction all modules inside the Uninets::Check::Modules namespace are loaded and new() is called on them.
 
-# OPTIONS
+    use Uninets::Check;
 
-## \--modules
+    # create object and load modules
+    my $unicheck = Uninets::Check->new;
 
-List all loaded modules
+# ATTRIBUTES
 
-	unicheck --modules
+## modules
 
-## \--info
+Hash reference containing all loaded modules with module names as keys and module instances as values.
 
-Show info of all modules
+    # print out loaded modules
+    say for keys $unicheck->modules;
 
-	unicheck --info
+# METHODS
+=cut
 
-Show info of HTTP module
+sub BUILD {
+    my $self = shift;
 
-	unicheck --info HTTP
+    my $modules = {};
 
-## \--newline
+    for my $check ($self->_plugins){
+        (my $name = $check) =~ s/Uninets::Check::Modules::(.*)/$1/;
+        $modules->{$name} = $check->new;
+    }
 
-Adds a newline to the output.
+    $self->modules($modules);
+}
+
+sub \_loaded\_modules {
+    my $self = shift;
+
+    wantarray ? keys %{$self->modules} : [keys %{$self->modules}];
+}
+
+## run
+
+Runs a check module's run() method with parameters.
+
+    $unicheck->run($module, @params);
+
+## info
+
+Show information on loaded modules. Calls the help() method of the modules and formats the output.
+
+    # show info of all modules
+    say $unicheck->info;
+
+    # show info of specific module
+    say $unicheck->info($module);
 
 # AUTHOR
 
@@ -41,9 +75,7 @@ Please report any bugs or feature requests to `bug-uninets-check at rt.cpan.org`
 the web interface at [http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Uninets-Check](http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Uninets-Check).  I will be notified, and then you'll
 automatically be notified of progress on your bug as I make changes.
 
-
-
-
+Alternatively report bugs or feature requests at [https://github.com/uninets/Uninets-Check/issues](https://github.com/uninets/Uninets-Check/issues).
 
 
 
@@ -72,6 +104,10 @@ You can also look for information at:
 - Search CPAN
 
     [http://search.cpan.org/dist/Uninets-Check/](http://search.cpan.org/dist/Uninets-Check/)
+
+- Github
+
+    [https://github.com/uninets/Uninets-Check/](https://github.com/uninets/Uninets-Check/)
 
 
 
