@@ -1,6 +1,6 @@
 # NAME
 
-App::Unicheck - Mini data collection framework!
+App::Unicheck - Mini data collection framework! [![Build Status](https://secure.travis-ci.org/uninets/App-Unicheck.png)](http://travis-ci.org/uninets/App-Unicheck)
 
 # VERSION
 

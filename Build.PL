@@ -7,7 +7,7 @@ my @script_files = grep { -f and !-d } glob 'script/*';
 
 my $builder = Module::Build->new(
     module_name         => 'App::Unicheck',
-    license             => 'Artistic_2_0',
+    license             => 'artistic_2',
     dist_author         => q{Matthias Krull <<m.krull@uninets.eu>>},
     dist_version_from   => 'lib/Uninets/Check.pm',
 
