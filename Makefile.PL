@@ -3,7 +3,7 @@ require 5.010001;
 use ExtUtils::MakeMaker;
 WriteMakefile
 (
-  'NAME' => 'Uninets::Check',
+  'NAME' => 'App::Unicheck',
   'VERSION_FROM' => 'lib/Uninets/Check.pm',
   'PREREQ_PM' => {
                    'Moo' => 0,

@@ -7,7 +7,7 @@ use Test::More;
 plan tests => 1;
 
 BEGIN {
-    use_ok( 'Uninets::Check' ) || print "Bail out!\n";
+    use_ok( 'App::Unicheck' ) || print "Bail out!\n";
 }
 
-diag( "Testing Uninets::Check $Uninets::Check::VERSION, Perl $], $^X" );
+diag( "Testing App::Unicheck $App::Unicheck::VERSION, Perl $], $^X" );

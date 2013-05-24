@@ -8,18 +8,18 @@ use Getopt::Long qw(:config auto_help pass_through);
 use 5.10.1;
 use feature 'say';
 
-use Uninets::Check;
+use App::Unicheck;
 
 =head1 NAME
 
-unicheck - Command line client of Uninets::Check.
+unicheck - Command line client of App::Unicheck.
 
 =cut
 
 
 =head1 SYNOPSIS
 
-Uninets::Check is a mini framework to collect data. Main goal was modularity and pluggability.
+App::Unicheck is a mini framework to collect data. Main goal was modularity and pluggability.
 unicheck is it's CLI.
 
 Usage: unicheck [options] [module_name] [module_params]
@@ -30,17 +30,17 @@ Usage: unicheck [options] [module_name] [module_params]
 
 List all loaded modules
 
-	unicheck --modules
+    unicheck --modules
 
 =head2 --info
 
 Show info of all modules
 
-	unicheck --info
+    unicheck --info
 
 Show info of HTTP module
 
-	unicheck --info HTTP
+    unicheck --info HTTP
 
 =head2 --newline
 
@@ -48,36 +48,36 @@ Adds a newline to the output.
 
 =cut
 
-my $check = Uninets::Check->new;
+my $check = App::Unicheck->new;
 
 my $info = undef;
 my $plugins_flag = '';
 my $eol = '';
 
 my $option_handler = sub {
-	my ($option, @params) = @_;
-	$info = shift @params if $option eq 'info';
-	$eol  = "\n" if $option eq 'newline';
+    my ($option, @params) = @_;
+    $info = shift @params if $option eq 'info';
+    $eol  = "\n" if $option eq 'newline';
 };
 
 GetOptions(
-	'info:s' => $option_handler,
-	'newline' => $option_handler,
-	'modules' => \$plugins_flag,
+    'info:s' => $option_handler,
+    'newline' => $option_handler,
+    'modules' => \$plugins_flag,
 );
 
 unless (keys %{$check->modules}) {
-	say 'No modules loaded. Maybe you need to install some first?';
+    say 'No modules loaded. Maybe you need to install some first?';
 }
 
 if (defined $info) {
-	print $check->info($info);
-	exit 0;
+    print $check->info($info);
+    exit 0;
 }
 
 if ($plugins_flag) {
-	print "$_\n" for keys %{$check->modules};
-	exit 0;
+    print "$_\n" for keys %{$check->modules};
+    exit 0;
 }
 
 print $check->run(@ARGV) . $eol;
@@ -88,8 +88,8 @@ Matthias Krull, C<< <<m.krull at uninets.eu>> >>
 
 =head1 BUGS
 
-Please report any bugs or feature requests to C<bug-uninets-check at rt.cpan.org>, or through
-the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Uninets-Check>.  I will be notified, and then you'll
+Please report any bugs or feature requests to C<bug-app-unicheck at rt.cpan.org>, or through
+the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=App-Unicheck>.  I will be notified, and then you'll
 automatically be notified of progress on your bug as I make changes.
 
 
@@ -99,7 +99,7 @@ automatically be notified of progress on your bug as I make changes.
 
 You can find documentation for this module with the perldoc command.
 
-    perldoc Uninets::Check
+    perldoc App::Unicheck
 
 
 You can also look for information at:
@@ -108,19 +108,19 @@ You can also look for information at:
 
 =item * RT: CPAN's request tracker (report bugs here)
 
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Uninets-Check>
+L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=App-Unicheck>
 
 =item * AnnoCPAN: Annotated CPAN documentation
 
-L<http://annocpan.org/dist/Uninets-Check>
+L<http://annocpan.org/dist/App-Unicheck>
 
 =item * CPAN Ratings
 
-L<http://cpanratings.perl.org/d/Uninets-Check>
+L<http://cpanratings.perl.org/d/App-Unicheck>
 
 =item * Search CPAN
 
-L<http://search.cpan.org/dist/Uninets-Check/>
+L<http://search.cpan.org/dist/App-Unicheck/>
 
 =back
 

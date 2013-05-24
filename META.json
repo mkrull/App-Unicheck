@@ -12,7 +12,7 @@
       "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
       "version" : "2"
    },
-   "name" : "Uninets-Check",
+   "name" : "App-Unicheck",
    "no_index" : {
       "directory" : [
          "t"
@@ -37,7 +37,7 @@
       }
    },
    "provides" : {
-      "Uninets::Check" : {
+      "App::Unicheck" : {
          "file" : "lib/Uninets/Check.pm",
          "version" : "0.04"
       }
@@ -48,7 +48,7 @@
          "http://www.perlfoundation.org/artistic_license_2_0"
       ],
       "repository" : {
-         "url" : "https://github.com/uninets/Uninets-Check"
+         "url" : "https://github.com/uninets/App-Unicheck"
       }
    },
    "version" : "0.04"

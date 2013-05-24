@@ -1,14 +1,14 @@
-package Uninets::Check;
+package App::Unicheck;
 
 use 5.10.1;
 use strict;
 use warnings FATAL => 'all';
-use Module::Pluggable sub_name => '_plugins', require => 1, search_path => ['Uninets::Check::Modules'];
+use Module::Pluggable sub_name => '_plugins', require => 1, search_path => ['App::Unicheck::Modules'];
 use Moo;
 
 =head1 NAME
 
-Uninets::Check - Mini data collection framework!
+App::Unicheck - Mini data collection framework!
 
 =head1 VERSION
 
@@ -20,15 +20,15 @@ our $VERSION = '0.04';
 
 =head1 SYNOPSIS
 
-Uninets::Check is a mini framework to collect data.
+App::Unicheck is a mini framework to collect data.
 The main purpose was to provide a pluggable, easy to use systems data source with consistent interface that is independent from specific systems monitoring solutions but can still be used by them.
 
-On object construction all modules inside the Uninets::Check::Modules namespace are loaded and new() is called on them.
+On object construction all modules inside the App::Unicheck::Modules namespace are loaded and new() is called on them.
 
-    use Uninets::Check;
+    use App::Unicheck;
 
     # create object and load modules
-    my $unicheck = Uninets::Check->new;
+    my $unicheck = App::Unicheck->new;
 
 =cut
 
@@ -58,7 +58,7 @@ sub BUILD {
     my $modules = {};
 
     for my $check ($self->_plugins){
-        (my $name = $check) =~ s/Uninets::Check::Modules::(.*)/$1/;
+        (my $name = $check) =~ s/App::Unicheck::Modules::(.*)/$1/;
         $modules->{$name} = $check->new;
     }
 
@@ -137,18 +137,18 @@ Matthias Krull, C<< <<m.krull at uninets.eu>> >>
 
 =head1 BUGS
 
-Please report any bugs or feature requests to C<bug-uninets-check at rt.cpan.org>, or through
-the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Uninets-Check>.  I will be notified, and then you'll
+Please report any bugs or feature requests to C<bug-app-unicheck at rt.cpan.org>, or through
+the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=App-Unicheck>.  I will be notified, and then you'll
 automatically be notified of progress on your bug as I make changes.
 
-Alternatively report bugs or feature requests at L<https://github.com/uninets/Uninets-Check/issues>.
+Alternatively report bugs or feature requests at L<https://github.com/uninets/App-Unicheck/issues>.
 
 
 =head1 SUPPORT
 
 You can find documentation for this module with the perldoc command.
 
-    perldoc Uninets::Check
+    perldoc App::Unicheck
 
 
 You can also look for information at:
@@ -157,23 +157,23 @@ You can also look for information at:
 
 =item * RT: CPAN's request tracker (report bugs here)
 
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Uninets-Check>
+L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=App-Unicheck>
 
 =item * AnnoCPAN: Annotated CPAN documentation
 
-L<http://annocpan.org/dist/Uninets-Check>
+L<http://annocpan.org/dist/App-Unicheck>
 
 =item * CPAN Ratings
 
-L<http://cpanratings.perl.org/d/Uninets-Check>
+L<http://cpanratings.perl.org/d/App-Unicheck>
 
 =item * Search CPAN
 
-L<http://search.cpan.org/dist/Uninets-Check/>
+L<http://search.cpan.org/dist/App-Unicheck/>
 
 =item * Github
 
-L<https://github.com/uninets/Uninets-Check/>
+L<https://github.com/uninets/App-Unicheck/>
 
 =back
 
@@ -224,4 +224,4 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 =cut
 
-1; # End of Uninets::Check
+1; # End of App::Unicheck

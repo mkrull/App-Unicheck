@@ -1,6 +1,6 @@
 # NAME
 
-Uninets::Check - Mini data collection framework!
+App::Unicheck - Mini data collection framework!
 
 # VERSION
 
@@ -8,15 +8,15 @@ Version 0.04
 
 # SYNOPSIS
 
-Uninets::Check is a mini framework to collect data.
+App::Unicheck is a mini framework to collect data.
 The main purpose was to provide a pluggable, easy to use systems data source with consistent interface that is independent from specific systems monitoring solutions but can still be used by them.
 
-On object construction all modules inside the Uninets::Check::Modules namespace are loaded and new() is called on them.
+On object construction all modules inside the App::Unicheck::Modules namespace are loaded and new() is called on them.
 
-    use Uninets::Check;
+    use App::Unicheck;
 
     # create object and load modules
-    my $unicheck = Uninets::Check->new;
+    my $unicheck = App::Unicheck->new;
 
 # ATTRIBUTES
 
@@ -51,11 +51,11 @@ Matthias Krull, `<<m.krull at uninets.eu>>`
 
 # BUGS
 
-Please report any bugs or feature requests to `bug-uninets-check at rt.cpan.org`, or through
-the web interface at [http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Uninets-Check](http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Uninets-Check).  I will be notified, and then you'll
+Please report any bugs or feature requests to `bug-app-unicheck at rt.cpan.org`, or through
+the web interface at [http://rt.cpan.org/NoAuth/ReportBug.html?Queue=App-Unicheck](http://rt.cpan.org/NoAuth/ReportBug.html?Queue=App-Unicheck).  I will be notified, and then you'll
 automatically be notified of progress on your bug as I make changes.
 
-Alternatively report bugs or feature requests at [https://github.com/uninets/Uninets-Check/issues](https://github.com/uninets/Uninets-Check/issues).
+Alternatively report bugs or feature requests at [https://github.com/uninets/App-Unicheck/issues](https://github.com/uninets/App-Unicheck/issues).
 
 
 
@@ -63,7 +63,7 @@ Alternatively report bugs or feature requests at [https://github.com/uninets/Uni
 
 You can find documentation for this module with the perldoc command.
 
-    perldoc Uninets::Check
+    perldoc App::Unicheck
 
 
 
@@ -71,23 +71,23 @@ You can also look for information at:
 
 - RT: CPAN's request tracker (report bugs here)
 
-    [http://rt.cpan.org/NoAuth/Bugs.html?Dist=Uninets-Check](http://rt.cpan.org/NoAuth/Bugs.html?Dist=Uninets-Check)
+    [http://rt.cpan.org/NoAuth/Bugs.html?Dist=App-Unicheck](http://rt.cpan.org/NoAuth/Bugs.html?Dist=App-Unicheck)
 
 - AnnoCPAN: Annotated CPAN documentation
 
-    [http://annocpan.org/dist/Uninets-Check](http://annocpan.org/dist/Uninets-Check)
+    [http://annocpan.org/dist/App-Unicheck](http://annocpan.org/dist/App-Unicheck)
 
 - CPAN Ratings
 
-    [http://cpanratings.perl.org/d/Uninets-Check](http://cpanratings.perl.org/d/Uninets-Check)
+    [http://cpanratings.perl.org/d/App-Unicheck](http://cpanratings.perl.org/d/App-Unicheck)
 
 - Search CPAN
 
-    [http://search.cpan.org/dist/Uninets-Check/](http://search.cpan.org/dist/Uninets-Check/)
+    [http://search.cpan.org/dist/App-Unicheck/](http://search.cpan.org/dist/App-Unicheck/)
 
 - Github
 
-    [https://github.com/uninets/Uninets-Check/](https://github.com/uninets/Uninets-Check/)
+    [https://github.com/uninets/App-Unicheck/](https://github.com/uninets/App-Unicheck/)
 
 
 

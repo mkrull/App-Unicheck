@@ -12,12 +12,12 @@ license: artistic_2
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
   version: 1.4
-name: Uninets-Check
+name: App-Unicheck
 no_index:
   directory:
     - t
 provides:
-  Uninets::Check:
+  App::Unicheck:
     file: lib/Uninets/Check.pm
     version: 0.04
 requires:
@@ -25,5 +25,5 @@ requires:
   perl: v5.10.1
 resources:
   license: http://www.perlfoundation.org/artistic_license_2_0
-  repository: https://github.com/uninets/Uninets-Check
+  repository: https://github.com/uninets/App-Unicheck
 version: 0.04
