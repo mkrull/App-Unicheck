@@ -1,6 +1,6 @@
 Build.PL
 Changes
-lib/Uninets/Check.pm
+lib/App/Unicheck.pm
 script/unicheck
 MANIFEST			This list of files
 README
