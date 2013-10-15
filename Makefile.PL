@@ -3,16 +3,16 @@ require 5.010001;
 use ExtUtils::MakeMaker;
 WriteMakefile
 (
-  'PL_FILES' => {},
-  'INSTALLDIRS' => 'site',
   'NAME' => 'App::Unicheck',
+  'VERSION_FROM' => 'lib/App/Unicheck.pm',
+  'PREREQ_PM' => {
+                   'Moo' => 0,
+                   'Test::More' => 0
+                 },
+  'INSTALLDIRS' => 'site',
   'EXE_FILES' => [
                    'script/unicheck'
                  ],
-  'VERSION_FROM' => 'lib/App/Unicheck.pm',
-  'PREREQ_PM' => {
-                   'Test::More' => 0,
-                   'Moo' => 0
-                 }
+  'PL_FILES' => {}
 )
 ;
